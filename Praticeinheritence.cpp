@@ -3,108 +3,172 @@
 #include <string>
 using namespace std;
 
-class People {
+class Employee {
 private:
     string cccd;
-    string name;
+    string sdt;
     string address;
 
 public:
-    People() {
-        cccd = "000000000000";
-        name = "Unknown";
-        address = "Unknown";
+    Employee() {
+        cccd = "";
+        sdt = "";
+        address = "";
     }
 
-    People(string c, string n, string a) {
+    Employee(string c, string p, string a) {
         cccd = c;
-        name = n;
+        sdt = p;
         address = a;
     }
 
-    void displayInfo() const {
-        cout << "CCCD: " << cccd << endl;
-        cout << "Name: " << name << endl;
-        cout << "Address: " << address << endl;
+    string getCCCD() const {
+        return cccd;
+    }
+
+    string getSDT() const {
+        return sdt;
+    }
+
+    string getAddress() const {
+        return address;
+    }
+
+    void setCCCD(string c) {
+        cccd = c;
+    }
+
+    void setSDT(string p) {
+        sdt = p;
+    }
+
+    void setAddress(string a) {
+        address = a;
     }
 };
 
-class Student : public People {
+class HourlyEmployee : public Employee {
 private:
-    string mssv;
-    int yearEntrance;
+    int soGioLamViec;
+    double donGia;
 
 public:
-    Student() : People() {
-        mssv = "N/A";
-        yearEntrance = 0;
+    HourlyEmployee() : Employee() {
+        soGioLamViec = 0;
+        donGia = 0.0;
     }
 
-    Student(string c, string n, string a, string m, int y)
-        : People(c, n, a) {
-        mssv = m;
-        yearEntrance = y;
+    HourlyEmployee(string c, string p, string a,
+                   int soGio, double dg)
+        : Employee(c, p, a) {
+        soGioLamViec = soGio;
+        donGia = dg;
     }
 
-    void displayInfo() const {
-        People::displayInfo();
-        cout << "MSSV: " << mssv << endl;
-        cout << "Year Entrance: " << yearEntrance << endl;
+    int getSoGioLamViec() const {
+        return soGioLamViec;
+    }
+
+    double getDonGia() const {
+        return donGia;
+    }
+
+    void setSoGioLamViec(int g) {
+        soGioLamViec = g;
+    }
+
+    void setDonGia(double dg) {
+        donGia = dg;
     }
 };
 
-class FIEStudent : public Student {
+class MonthlyEmployee : public Employee {
 private:
-    int credits;
+    double luongCoBan;
+    double phuCap;
+    double heSoThuong;
 
 public:
-    FIEStudent() : Student() {
-        credits = 0;
+    MonthlyEmployee() : Employee() {
+        luongCoBan = 0.0;
+        phuCap = 0.0;
+        heSoThuong = 0.0;
     }
 
-    FIEStudent(string c, string n, string a,
-               string m, int y, int cr)
-        : Student(c, n, a, m, y) {
-        credits = cr;
+    MonthlyEmployee(string c, string p, string a,
+                    double lcb, double pc, double hs)
+        : Employee(c, p, a) {
+        luongCoBan = lcb;
+        phuCap = pc;
+        heSoThuong = hs;
     }
 
-    void displayInfo() const {
-        Student::displayInfo();
-        cout << "Credits: " << credits << endl;
+    double getLuongCoBan() const {
+        return luongCoBan;
+    }
+
+    double getPhuCap() const {
+        return phuCap;
+    }
+
+    double getHeSoThuong() const {
+        return heSoThuong;
+    }
+
+    void setLuongCoBan(double lcb) {
+        luongCoBan = lcb;
+    }
+
+    void setPhuCap(double pc) {
+        phuCap = pc;
+    }
+
+    void setHeSoThuong(double hs) {
+        heSoThuong = hs;
     }
 };
 
 int main() {
-    People p1;
-    cout << "--- Thong tin doi tuong p1 (People - mac dinh) ---" << endl;
-    p1.displayInfo();
+    Employee e1;
+
+    HourlyEmployee h1(
+        "079123456789",
+        "0901002003",
+        "Ha Noi",
+        160,
+        50000
+    );
+
+    MonthlyEmployee m1(
+        "079987654321",
+        "0903004005",
+        "Da Nang",
+        15000000,
+        2000000,
+        1.2
+    );
+
+    cout << "--- Employee e1 ---" << endl;
+    cout << "CCCD: " << e1.getCCCD() << endl;
+    cout << "SDT: " << e1.getSDT() << endl;
+    cout << "Address: " << e1.getAddress() << endl;
     cout << endl;
 
-    People p2("079123456789", "Nguyen Van A", "Ho Chi Minh");
-    cout << "--- Thong tin doi tuong p2 (People - co tham so) ---" << endl;
-    p2.displayInfo();
+    cout << "--- HourlyEmployee h1 ---" << endl;
+    cout << "CCCD: " << h1.getCCCD() << endl;
+    cout << "SDT: " << h1.getSDT() << endl;
+    cout << "Address: " << h1.getAddress() << endl;
+    cout << "So gio lam viec: " << h1.getSoGioLamViec() << endl;
+    cout << "Don gia: " << h1.getDonGia() << endl;
     cout << endl;
 
-    Student s1;
-    cout << "--- Thong tin doi tuong s1 (Student - mac dinh) ---" << endl;
-    s1.displayInfo();
-    cout << endl;
-
-    Student s2("079123456789", "Tran Thi B", "Ha Noi", "SV001", 2023);
-    cout << "--- Thong tin doi tuong s2 (Student - co tham so) ---" << endl;
-    s2.displayInfo();
-    cout << endl;
-
-    FIEStudent f1;
-    cout << "--- Thong tin doi tuong f1 (FIEStudent - mac dinh) ---" << endl;
-    f1.displayInfo();
-    cout << endl;
-
-    FIEStudent f2("079987654321", "Le Minh C", "Da Nang",
-                  "FIE2023001", 2023, 120);
-    cout << "--- Thong tin doi tuong f2 (FIEStudent - co tham so) ---" << endl;
-    f2.displayInfo();
-    cout << endl;
+    cout << "--- MonthlyEmployee m1 ---" << endl;
+    cout << "CCCD: " << m1.getCCCD() << endl;
+    cout << "SDT: " << m1.getSDT() << endl;
+    cout << "Address: " << m1.getAddress() << endl;
+    cout << "Luong co ban: " << m1.getLuongCoBan() << endl;
+    cout << "Phu cap: " << m1.getPhuCap() << endl;
+    cout << "He so thuong: " << m1.getHeSoThuong() << endl;
 
     return 0;
 }
