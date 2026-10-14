@@ -11,27 +11,15 @@ private:
 
 public:
     People() {
-        cccd = "";
-        name = "";
-        address = "";
+        cccd = "000000000000";
+        name = "Unknown";
+        address = "Unknown";
     }
 
     People(string c, string n, string a) {
         cccd = c;
         name = n;
         address = a;
-    }
-
-    string getCccd() const {
-        return cccd;
-    }
-
-    string getName() const {
-        return name;
-    }
-
-    string getAddress() const {
-        return address;
     }
 
     void displayInfo() const {
@@ -48,7 +36,7 @@ private:
 
 public:
     Student() : People() {
-        mssv = "";
+        mssv = "N/A";
         yearEntrance = 0;
     }
 
@@ -88,25 +76,35 @@ public:
 
 int main() {
     People p1;
-    cout << "--- People p1 (default) ---" << endl;
+    cout << "--- Thong tin doi tuong p1 (People - mac dinh) ---" << endl;
     p1.displayInfo();
     cout << endl;
 
     People p2("079123456789", "Nguyen Van A", "Ho Chi Minh");
-    cout << "--- People p2 (parameterized) ---" << endl;
+    cout << "--- Thong tin doi tuong p2 (People - co tham so) ---" << endl;
     p2.displayInfo();
     cout << endl;
 
-    Student s1("079123456789", "Tran Thi B",
-               "Ha Noi", "SV001", 2023);
-    cout << "--- Student s1 ---" << endl;
+    Student s1;
+    cout << "--- Thong tin doi tuong s1 (Student - mac dinh) ---" << endl;
     s1.displayInfo();
     cout << endl;
 
-    FIEStudent f1("079987654321", "Le Minh C",
-                  "Da Nang", "FIE2023001", 2023, 120);
-    cout << "--- FIEStudent f1 ---" << endl;
+    Student s2("079123456789", "Tran Thi B", "Ha Noi", "SV001", 2023);
+    cout << "--- Thong tin doi tuong s2 (Student - co tham so) ---" << endl;
+    s2.displayInfo();
+    cout << endl;
+
+    FIEStudent f1;
+    cout << "--- Thong tin doi tuong f1 (FIEStudent - mac dinh) ---" << endl;
     f1.displayInfo();
+    cout << endl;
+
+    FIEStudent f2("079987654321", "Le Minh C", "Da Nang",
+                  "FIE2023001", 2023, 120);
+    cout << "--- Thong tin doi tuong f2 (FIEStudent - co tham so) ---" << endl;
+    f2.displayInfo();
+    cout << endl;
 
     return 0;
 }
