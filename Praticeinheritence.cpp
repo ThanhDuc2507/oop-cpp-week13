@@ -11,9 +11,9 @@ private:
 
 public:
     People() {
-        cccd = "000000000000";
-        name = "Unknown";
-        address = "Unknown";
+        cccd = "";
+        name = "";
+        address = "";
     }
 
     People(string c, string n, string a) {
@@ -34,16 +34,10 @@ public:
         return address;
     }
 
-    void setCccd(string c) {
-        cccd = c;
-    }
-
-    void setName(string n) {
-        name = n;
-    }
-
-    void setAddress(string a) {
-        address = a;
+    void displayInfo() const {
+        cout << "CCCD: " << cccd << endl;
+        cout << "Name: " << name << endl;
+        cout << "Address: " << address << endl;
     }
 };
 
@@ -54,7 +48,7 @@ private:
 
 public:
     Student() : People() {
-        mssv = "N/A";
+        mssv = "";
         yearEntrance = 0;
     }
 
@@ -64,20 +58,10 @@ public:
         yearEntrance = y;
     }
 
-    string getMssv() const {
-        return mssv;
-    }
-
-    int getYearEntrance() const {
-        return yearEntrance;
-    }
-
-    void setMssv(string m) {
-        mssv = m;
-    }
-
-    void setYearEntrance(int y) {
-        yearEntrance = y;
+    void displayInfo() const {
+        People::displayInfo();
+        cout << "MSSV: " << mssv << endl;
+        cout << "Year Entrance: " << yearEntrance << endl;
     }
 };
 
@@ -96,42 +80,33 @@ public:
         credits = cr;
     }
 
-    int getCredits() const {
-        return credits;
-    }
-
-    void setCredits(int cr) {
-        credits = cr;
-    }
-
     void displayInfo() const {
-        cout << "CCCD: " << getCccd() << endl;
-        cout << "Name: " << getName() << endl;
-        cout << "Address: " << getAddress() << endl;
-        cout << "MSSV: " << getMssv() << endl;
-        cout << "Year Entrance: " << getYearEntrance() << endl;
-        cout << "Credits: " << getCredits() << endl;
-        cout << "--------------------------" << endl;
+        Student::displayInfo();
+        cout << "Credits: " << credits << endl;
     }
 };
 
 int main() {
     People p1;
+    cout << "--- People p1 (default) ---" << endl;
+    p1.displayInfo();
+    cout << endl;
+
     People p2("079123456789", "Nguyen Van A", "Ho Chi Minh");
+    cout << "--- People p2 (parameterized) ---" << endl;
+    p2.displayInfo();
+    cout << endl;
 
-    Student s1;
-    Student s2("079123456789", "Tran Thi B",
+    Student s1("079123456789", "Tran Thi B",
                "Ha Noi", "SV001", 2023);
+    cout << "--- Student s1 ---" << endl;
+    s1.displayInfo();
+    cout << endl;
 
-    FIEStudent f1;
-    FIEStudent f2("079987654321", "Le Minh C",
+    FIEStudent f1("079987654321", "Le Minh C",
                   "Da Nang", "FIE2023001", 2023, 120);
-
-    cout << "== FIEStudent f1 (default constructor) ==" << endl;
+    cout << "--- FIEStudent f1 ---" << endl;
     f1.displayInfo();
-
-    cout << "== FIEStudent f2 (parameterized constructor) ==" << endl;
-    f2.displayInfo();
 
     return 0;
 }
